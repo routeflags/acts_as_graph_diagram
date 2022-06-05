@@ -1,0 +1,76 @@
+---
+god_1:
+  id: 1
+  name: Zeus
+  created_at: '2022-06-06 10:38:45.093277'
+  updated_at: '2022-06-06 10:38:45.093277'
+god_2:
+  id: 2
+  name: Hēra
+  created_at: '2022-06-06 10:38:45.096089'
+  updated_at: '2022-06-06 10:38:45.096089'
+god_3:
+  id: 3
+  name: Athēnā
+  created_at: '2022-06-06 10:38:45.097395'
+  updated_at: '2022-06-06 10:38:45.097395'
+god_4:
+  id: 4
+  name: Apollōn
+  created_at: '2022-06-06 10:38:45.098633'
+  updated_at: '2022-06-06 10:38:45.098633'
+god_5:
+  id: 5
+  name: Aphrodītē
+  created_at: '2022-06-06 10:38:45.099799'
+  updated_at: '2022-06-06 10:38:45.099799'
+god_6:
+  id: 6
+  name: Arēs
+  created_at: '2022-06-06 10:38:45.100947'
+  updated_at: '2022-06-06 10:38:45.100947'
+god_7:
+  id: 7
+  name: Artemis
+  created_at: '2022-06-06 10:38:45.102159'
+  updated_at: '2022-06-06 10:38:45.102159'
+god_8:
+  id: 8
+  name: Dēmētēr
+  created_at: '2022-06-06 10:38:45.103343'
+  updated_at: '2022-06-06 10:38:45.103343'
+god_9:
+  id: 9
+  name: Hēphaistos
+  created_at: '2022-06-06 10:38:45.104497'
+  updated_at: '2022-06-06 10:38:45.104497'
+god_10:
+  id: 10
+  name: Hermēs
+  created_at: '2022-06-06 10:38:45.105638'
+  updated_at: '2022-06-06 10:38:45.105638'
+god_11:
+  id: 11
+  name: Poseidōn
+  created_at: '2022-06-06 10:38:45.106783'
+  updated_at: '2022-06-06 10:38:45.106783'
+god_12:
+  id: 12
+  name: Hestiā
+  created_at: '2022-06-06 10:38:45.115509'
+  updated_at: '2022-06-06 10:38:45.115509'
+god_13:
+  id: 13
+  name: Dionȳsos
+  created_at: '2022-06-06 10:38:45.117000'
+  updated_at: '2022-06-06 10:38:45.117000'
+god_14:
+  id: 14
+  name: Hādēs
+  created_at: '2022-06-06 10:38:45.118172'
+  updated_at: '2022-06-06 10:38:45.118172'
+god_15:
+  id: 15
+  name: Persephonē
+  created_at: '2022-06-06 10:38:45.119311'
+  updated_at: '2022-06-06 10:38:45.119311'
