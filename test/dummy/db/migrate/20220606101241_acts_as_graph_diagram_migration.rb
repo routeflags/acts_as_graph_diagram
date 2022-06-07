@@ -3,9 +3,11 @@
 class ActsAsGraphDiagramMigration < ActiveRecord::Migration[4.2]
   def self.up
     create_table :edges, force: true do |t|
+      t.string :note, default: ''
+      t.integer :cost, default: 0
+      t.boolean :directed, default: true
       t.references :destination, polymorphic: true, null: true
       t.references :departure, polymorphic: true, null: true
-      t.boolean :directed, default: true
       t.timestamps
     end
 

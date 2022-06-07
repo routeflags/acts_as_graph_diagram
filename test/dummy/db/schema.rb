@@ -14,6 +14,9 @@
 
 ActiveRecord::Schema.define(version: 20_220_606_102_242) do
   create_table 'edges', force: :cascade do |t|
+    t.string 'note', default: ''
+    t.integer 'cost', default: 0
+    t.boolean 'directed', default: true
     t.string 'destination_type'
     t.integer 'destination_id'
     t.string 'departure_type'

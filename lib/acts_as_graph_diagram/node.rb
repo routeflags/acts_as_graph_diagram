@@ -6,7 +6,7 @@ module ActsAsGraphDiagram # :nodoc:
       base.extend ClassMethods
     end
 
-    module ClassMethods
+    module ClassMethods # :nodoc:
       def acts_as_node
         has_many :destinations, as: :destination, class_name: 'Edge'
         has_many :departures, as: :departure, class_name: 'Edge'
@@ -14,24 +14,23 @@ module ActsAsGraphDiagram # :nodoc:
       end
     end
 
-    module InstanceMethods
+    module InstanceMethods # :nodoc:
       # Creates a new destination record for this instance to connect the passed object.
-      # Does not allow duplicate records to be created.
       def add_destination(node)
-        return if self == node
-
         departures.select_destinations(node).first_or_create!
       end
 
       # Creates a new departure record for this instance to connect the passed object.
-      # Does not allow duplicate records to be created.
       def add_departure(node)
-        return if self == node
-
         destinations.select_departures(node).first_or_create!
       end
 
-      # Returns a node record for the current instance.
+      # Creates a new undirected connection record for this instance to connect the passed object.
+      def add_connection(node)
+        Edge.where(destination: node, directed: false, departure: self).first_or_create!
+      end
+
+      # Returns a destination node record for the current instance.
       def get_destination(node)
         departures.select_destinations(node).first
       end
@@ -41,7 +40,7 @@ module ActsAsGraphDiagram # :nodoc:
         get_destination(node).try(:destroy)
       end
 
-      # Returns a node record for the current instance.
+      # Returns a departure node record for the current instance.
       def get_departure(node)
         destinations.select_departures(node).first
       end
@@ -49,6 +48,16 @@ module ActsAsGraphDiagram # :nodoc:
       # Deletes the destination record if it exists.
       def remove_departure(node)
         get_departure(node).try(:destroy)
+      end
+
+      # Returns a undirected node record for the current instance.
+      def get_connection(node)
+        Edge.select_connections(node).first
+      end
+
+      # Deletes the undirected record if it exists.
+      def remove_connection(node)
+        get_connection(node).try(:destroy)
       end
 
       # Returns true if this instance is connecting the object passed as an argument.
