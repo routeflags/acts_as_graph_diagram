@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 class GodsController < ApplicationController
-  before_action :set_god, only: [:show, :edit, :update, :destroy]
+  before_action :set_god, only: %i[show edit update destroy]
+
+  def data_network
+    render json: { 'nodes' => God.all.pluck(:id, :name)
+                                 .map { |x| Hash[id: x[0], name: x[1]] },
+                   'links' => Edge.all.pluck(:destination_id, :departure_id)
+                                  .map { |x| Hash[target: x[0], source: x[1]] } }
+  end
 
   # GET /gods
   def index
