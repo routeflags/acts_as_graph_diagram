@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GodsController < ApplicationController
   before_action :set_god, only: [:show, :edit, :update, :destroy]
 
@@ -7,8 +9,7 @@ class GodsController < ApplicationController
   end
 
   # GET /gods/1
-  def show
-  end
+  def show; end
 
   # GET /gods/new
   def new
@@ -16,8 +17,7 @@ class GodsController < ApplicationController
   end
 
   # GET /gods/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /gods
   def create
@@ -46,13 +46,14 @@ class GodsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_god
-      @god = God.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def god_params
-      params.fetch(:god, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_god
+    @god = God.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def god_params
+    params.fetch(:god, {})
+  end
 end
