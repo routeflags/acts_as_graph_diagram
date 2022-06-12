@@ -31,9 +31,17 @@ module ActsAsGraphDiagram # :nodoc:
 
       # Creates a new undirected connection record for this instance to connect the passed object.
       # @param [Node] node
+      # @param [Boolean] directed
+      # @param [String] comment
+      # @param [Integer] cost
       # @return [Edge]
-      def add_connection(node)
-        Edge.where(destination: node, directed: false, departure: self).first_or_create!
+      # rubocop:disable Style/HashSyntax
+      def add_connection(node, directed: false, comment: '', cost: 0)
+        Edge.where(destination: node,
+                   directed: directed,
+                   departure: self,
+                   comment: comment,
+                   cost: cost).first_or_create!
       end
 
       # Returns a destination node record for the current instance.

@@ -3,6 +3,7 @@
 class GodsController < ApplicationController
   before_action :set_god, only: %i[show edit update destroy]
 
+  # GET /data_network
   def data_network
     render json: { 'nodes' => God.all.pluck(:id, :name)
                                  .map { |x| Hash[id: x[0], name: x[1]] },
@@ -61,6 +62,6 @@ class GodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def god_params
-    params.fetch(:god, {})
+    params.require(:god).permit(:name)
   end
 end

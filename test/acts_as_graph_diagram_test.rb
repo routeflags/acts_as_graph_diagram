@@ -18,5 +18,6 @@ class ActsAsGraphDiagramTest < ActiveSupport::TestCase
     assert God.first.respond_to?(:remove_departure)
     assert God.first.respond_to?(:connecting?)
     assert God.first.respond_to?(:connecting_count)
+    assert God.first.respond_to?(:add_connection)
   end
 end

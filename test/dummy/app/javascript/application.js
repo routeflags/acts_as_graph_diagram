@@ -9,10 +9,15 @@ const svg = d3.select("svg"),
   height = +svg.attr("height");
 
 const simulation = d3.forceSimulation()
-  .force("link", d3.forceLink()
-    .id(function (d) {
-      return d.id;
-    }))
+  .force("link",
+    d3.forceLink()
+      .distance(function (_d) {
+        return 100;
+      })
+      .strength(0.1)
+      .id(function (d) {
+        return d.id;
+      }))
   .force("charge", d3.forceManyBody())
   .force("center", d3.forceCenter(width / 2, height / 2));
 

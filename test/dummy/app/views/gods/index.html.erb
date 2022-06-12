@@ -5,6 +5,9 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Created At</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +15,9 @@
   <tbody>
     <% @gods.each do |god| %>
       <tr>
+        <td><%= god.id %></td>
+        <td><%= god.name %></td>
+        <td><%= god.created_at %></td>
         <td><%= link_to 'Show', god %></td>
         <td><%= link_to 'Edit', edit_god_path(god) %></td>
         <td><%= link_to 'Destroy', god, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -19,9 +25,10 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'New God', new_god_path %>
 
 <br>
 
+<h2>Force Directed Graph</h2>
 <svg width="960" height="600"></svg>
 
-<%= link_to 'New God', new_god_path %>
