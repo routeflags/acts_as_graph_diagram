@@ -12,24 +12,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_606_102_242) do
+ActiveRecord::Schema[7.0].define(version: 20_220_612_090_334) do
   create_table 'edges', force: :cascade do |t|
-    t.string 'note', default: ''
+    t.string 'comment', default: ''
     t.integer 'cost', default: 0
     t.boolean 'directed', default: true
     t.string 'destination_type'
     t.integer 'destination_id'
     t.string 'departure_type'
     t.integer 'departure_id'
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
+    t.datetime 'created_at', precision: nil
+    t.datetime 'updated_at', precision: nil
     t.index %w[departure_id departure_type], name: 'fk_edges_departure'
     t.index %w[destination_id destination_type], name: 'fk_edges_destination'
   end
 
   create_table 'gods', force: :cascade do |t|
     t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 end

@@ -3,7 +3,7 @@
 class ActsAsGraphDiagramMigration < ActiveRecord::Migration[4.2] # :nodoc:
   def self.up
     create_table :edges, force: true do |t|
-      t.string :note, default: ''
+      t.string :comment, default: ''
       t.integer :cost, default: 0
       t.boolean :directed, default: true
       t.references :destination, polymorphic: true, null: true
