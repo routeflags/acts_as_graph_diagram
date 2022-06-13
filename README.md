@@ -10,6 +10,8 @@ Acts As Graph Diagram extends Active Record to add simple function for draw the 
 
 ## See It Work
 
+![acts_as_graph_diagram](https://user-images.githubusercontent.com/25024587/173231019-ede998c4-333a-48dd-b2da-96f04e1fce86.gif)
+
 ## Usage
 
 Append the line to your model file like below:
