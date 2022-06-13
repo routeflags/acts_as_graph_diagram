@@ -43,5 +43,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'seed_dump'
   spec.add_development_dependency 'sprockets-rails'
   spec.add_development_dependency 'sqlite3'
+  spec.add_development_dependency 'turbo-rails'
   spec.add_development_dependency 'web-console'
 end

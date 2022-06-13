@@ -39,4 +39,5 @@ pin 'd3-zoom', to: 'https://ga.jspm.io/npm:d3-zoom@3.0.0/src/index.js'
 pin 'delaunator', to: 'https://ga.jspm.io/npm:delaunator@5.0.0/index.js'
 pin 'internmap', to: 'https://ga.jspm.io/npm:internmap@2.0.3/src/index.js'
 pin 'robust-predicates', to: 'https://ga.jspm.io/npm:robust-predicates@3.0.1/index.js'
+pin '@hotwired/turbo-rails', to: 'turbo.min.js', preload: true
 pin 'application'
