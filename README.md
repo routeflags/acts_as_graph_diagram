@@ -21,6 +21,36 @@ class God < ApplicationRecord
 end
 
 God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra')
+# => #<Edge:0x000000010b0d4560
+#  id: 1,
+#  comment: "",
+#  cost: 0,
+#  directed: true,
+#  destination_type: "God",
+#  destination_id: 2,
+#  departure_type: "God",
+#  departure_id: 1,
+#  created_at: Sun, 12 Jun 2022 11:11:06.995007000 UTC +00:00,
+#  updated_at: Sun, 12 Jun 2022 11:11:06.995007000 UTC +00:00>
+
+God.find_by(name: 'Rheā').connecting_count
+# => 1
+
+God.find_by(name: 'Rheā').departures
+# => [#<Edge:0x000000010b5642b0
+#   id: 1,
+#   comment: "",
+#   cost: 0,
+#   directed: true,
+#   destination_type: "God",
+#   destination_id: 2,
+#   departure_type: "God",
+#   departure_id: 1,
+#   created_at: Sun, 12 Jun 2022 11:11:06.995007000 UTC +00:00,
+#   updated_at: Sun, 12 Jun 2022 11:11:06.995007000 UTC +00:00>]
+
+God.find_by(name: 'Rheā').departures.first.destination
+# => #<God:0x000000010b5efb58 id: 2, name: "Hēra", created_at: Sun, 12 Jun 2022 11:11:06.984341000 UTC +00:00, updated_at: Sun, 12 Jun 2022 11:11:06.984341000 UTC +00:00>
 ```
 
 ### Methods
@@ -37,7 +67,7 @@ God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra')
 * connecting_count()
 * add_connection(node, directed: false, comment: '', cost: 0)
 
-### Display the graph with D3.js
+### Draws the graph diagram with D3.js
 
 1. Append the lines to your controller file like below:
 ```ruby
