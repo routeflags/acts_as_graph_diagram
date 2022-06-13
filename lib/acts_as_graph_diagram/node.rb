@@ -8,8 +8,8 @@ module ActsAsGraphDiagram # :nodoc:
 
     module ClassMethods # :nodoc:
       def acts_as_node
-        has_many :destinations, as: :destination, class_name: 'Edge'
-        has_many :departures, as: :departure, class_name: 'Edge'
+        has_many :destinations, as: :destination, class_name: 'Edge', dependent: :destroy
+        has_many :departures, as: :departure, class_name: 'Edge', dependent: :destroy
         include ActsAsGraphDiagram::Node::InstanceMethods
       end
     end
