@@ -5,6 +5,6 @@ require 'acts_as_graph_diagram/railtie'
 
 module ActsAsGraphDiagram
   autoload :Node, 'acts_as_graph_diagram/node'
-  autoload :GraphDiagramScopes, 'acts_as_graph_diagram/graph_diagram_scopes'
+  autoload :EdgeScopes, 'acts_as_graph_diagram/edge_scopes.rb'
   require 'acts_as_graph_diagram/railtie' if defined?(Rails) && Rails::VERSION::MAJOR >= 3
 end
