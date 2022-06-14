@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ActsAsGraphDiagram # :nodoc:
-  module GraphDiagramScopes
+  module EdgeScopes
     extend ActiveSupport::Concern
 
     included do

@@ -17,7 +17,6 @@ class ActsAsGraphDiagramGenerator < Rails::Generators::Base
       Time.now.utc.strftime('%Y%m%d%H%M%S')
     else
       format('%.3d', (current_migration_number(dirname) + 1))
-      Time.now.utc.strftime("%Y%m%d%H%M%S")
     end
   end
 

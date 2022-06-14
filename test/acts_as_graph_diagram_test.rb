@@ -19,5 +19,25 @@ class ActsAsGraphDiagramTest < ActiveSupport::TestCase
     assert God.first.respond_to?(:connecting?)
     assert God.first.respond_to?(:connecting_count)
     assert God.first.respond_to?(:add_connection)
+    assert God.first.respond_to?(:sum_cost)
+    assert God.first.respond_to?(:sum_tree_cost)
+    assert God.first.respond_to?(:assemble_nodes)
+  end
+
+  test 'calculate sum_cost' do
+    God.find(3).add_destination(God.find(5), cost: 4)
+    assert_equal God.find(3).sum_cost, 4
+  end
+
+  test 'calculate sum_tree_cost' do
+    God.find(4).add_destination(God.find(6), cost: 4)
+    God.find(6).add_destination(God.find(7), cost: 3)
+    assert_equal God.find(4).sum_tree_cost, 7
+  end
+
+  test 'call assemble_nodes' do
+    God.find(4).add_destination(God.find(6), cost: 4)
+    God.find(6).add_destination(God.find(7), cost: 3)
+    assert_equal God.find(4).assemble_nodes.size, 3
   end
 end

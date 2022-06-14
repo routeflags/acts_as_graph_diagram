@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'acts_as_graph_diagram/node/graph_calculator'
+
 module ActsAsGraphDiagram # :nodoc:
   module Node
     def self.included(base)
@@ -8,25 +10,40 @@ module ActsAsGraphDiagram # :nodoc:
 
     module ClassMethods # :nodoc:
       def acts_as_node
-        has_many :destinations, as: :destination, class_name: 'Edge', dependent: :destroy
-        has_many :departures, as: :departure, class_name: 'Edge', dependent: :destroy
+        has_many :destinations, as: :destination,
+                                class_name: 'Edge',
+                                dependent: :destroy
+        has_many :departures, as: :departure,
+                              class_name: 'Edge',
+                              dependent: :destroy
         include ActsAsGraphDiagram::Node::InstanceMethods
+        include ActsAsGraphDiagram::Node::GraphCalculator
       end
     end
 
     module InstanceMethods # :nodoc:
+      # rubocop:disable Style/HashSyntax
+
       # Creates a new destination record for this instance to connect the passed object.
       # @param [Node] node
+      # @param [String] comment
+      # @param [Integer] cost
       # @return [Edge]
-      def add_destination(node)
-        departures.select_destinations(node).first_or_create!
+      def add_destination(node, comment: '', cost: 0)
+        departures.select_destinations(node)
+                  .where(comment: comment, cost: cost)
+                  .first_or_create!
       end
 
       # Creates a new departure record for this instance to connect the passed object.
       # @param [Node] node
+      # @param [String] comment
+      # @param [Integer] cost
       # @return [Edge]
-      def add_departure(node)
-        destinations.select_departures(node).first_or_create!
+      def add_departure(node, comment: '', cost: 0)
+        destinations.select_departures(node)
+                    .where(comment: comment, cost: cost)
+                    .first_or_create!
       end
 
       # Creates a new undirected connection record for this instance to connect the passed object.
@@ -35,7 +52,6 @@ module ActsAsGraphDiagram # :nodoc:
       # @param [String] comment
       # @param [Integer] cost
       # @return [Edge]
-      # rubocop:disable Style/HashSyntax
       def add_connection(node, directed: false, comment: '', cost: 0)
         Edge.where(destination: node,
                    directed: directed,
@@ -43,6 +59,7 @@ module ActsAsGraphDiagram # :nodoc:
                    comment: comment,
                    cost: cost).first_or_create!
       end
+      # rubocop:enable Style/HashSyntax
 
       # Returns a destination node record for the current instance.
       # @param [Node] node

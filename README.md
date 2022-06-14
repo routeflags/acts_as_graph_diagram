@@ -57,8 +57,8 @@ God.find_by(name: 'Rheā').departures.first.destination
 
 * destinations()
 * departures()
-* add_destination(node)
-* add_departure(node)
+* add_destination(node, comment: '', cost: 0)
+* add_departure(node, comment: '', cost: 0)
 * get_destination(node)
 * get_departure(node)
 * remove_destination(node)
@@ -66,6 +66,10 @@ God.find_by(name: 'Rheā').departures.first.destination
 * connecting?(node)
 * connecting_count()
 * add_connection(node, directed: false, comment: '', cost: 0)
+* add_connection(node, directed: false, comment: '', cost: 0)
+* sum_cost
+* sum_tree_cost
+* assemble_nodes
 
 ### Draws the graph diagram with D3.js
 
@@ -142,3 +146,4 @@ Everyone interacting in the ActsAsTreeDiagram project's codebases, issue tracker
 - [activerecord - Model an undirected graph in Rails? - Stack Overflow](https://stackoverflow.com/questions/7976301/model-an-undirected-graph-in-rails)
 - [tcocca/acts_as_follower: A Gem to add Follow functionality for models](https://github.com/tcocca/acts_as_follower)
 - [Force layout | D3 in Depth](https://www.d3indepth.com/force-layout/)
+- [Rubyを使って「なぜ関数プログラミングは重要か」を読み解く（改定）─ 前編 ─ 但し後編の予定なし](https://melborne.github.io/2013/01/21/why-fp-with-ruby/)
