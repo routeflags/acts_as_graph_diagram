@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails/generators'
 require 'rails/generators/migration'
 
 class ActsAsGraphDiagramGenerator < Rails::Generators::Base
-
   include Rails::Generators::Migration
 
   def self.source_root
@@ -13,9 +14,10 @@ class ActsAsGraphDiagramGenerator < Rails::Generators::Base
   # taken from https://github.com/rails/rails/blob/master/activerecord/lib/rails/generators/active_record.rb
   def self.next_migration_number(dirname)
     if ActiveRecord::Base.timestamped_migrations
-      Time.now.utc.strftime("%Y%m%d%H%M%S")
+      Time.now.utc.strftime('%Y%m%d%H%M%S')
     else
-      "%.3d" % (current_migration_number(dirname) + 1)
+      format('%.3d', (current_migration_number(dirname) + 1))
+      Time.now.utc.strftime("%Y%m%d%H%M%S")
     end
   end
 
@@ -24,7 +26,6 @@ class ActsAsGraphDiagramGenerator < Rails::Generators::Base
   end
 
   def create_model
-    template "model.rb", File.join('app/models', "edge.rb")
+    template 'model.rb', File.join('app/models', 'edge.rb')
   end
-
 end
