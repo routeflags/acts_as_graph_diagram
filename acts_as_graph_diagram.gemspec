@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version     = ActsAsGraphDiagram::VERSION
   spec.authors     = ['smapira']
   spec.email       = ['smapira@routeflags.com']
-  spec.homepage    = 'https://github.com/smapira/acts_as_graph_diagram'
+  spec.homepage    = 'https://github.com/routeflags/acts_as_graph_diagram'
   spec.summary     = 'Draws a graph diagram from a active record model'
   spec.description = <<-DESCRIPTION
     Extends Active Record to add simple function for draw the Force Directed Graph with html.
@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   # to allow pushing to a single host or delete this section to allow pushing to any host.
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/smapira/acts_as_graph_diagram'
-  spec.metadata['changelog_uri'] = 'https://github.com/smapira/acts_as_graph_diagram/blob/main/CHANGELOG.md'
+  spec.metadata['source_code_uri'] = 'https://github.com/routeflags/acts_as_graph_diagram'
+  spec.metadata['changelog_uri'] = 'https://github.com/routeflags/acts_as_graph_diagram/blob/main/CHANGELOG.md'
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
