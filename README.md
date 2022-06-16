@@ -36,7 +36,7 @@ God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', cost: 1)
 God.find_by(name: 'Rheā').connecting_count
 # => 1
 
-God.find_by(name: 'Rheā').destinations
+God.find_by(name: 'Rheā').aheads
 # => [#<Edge:0x000000010b5642b0
 #   id: 1,
 #   comment: "",
@@ -72,7 +72,9 @@ God.find_by(name: 'Rheā').aheads.first.destination
 
 ### Draws the graph diagram with D3.js
 
-1. Append the lines to your controller file like below:
+Distributes to represent a graph JSON via API.
+
+1. Implement a renderer in your controller file as below:
 ```ruby
 class GodsController < ApplicationController
   def data_network
@@ -91,7 +93,7 @@ Rails.application.routes.draw do
 end
 ```
 
-3. Then append the line to your javascript file like below:
+3. Then execute a D3 query in your javascript file as below:
 ```javascript
 // v7.4.4
 d3.json("http://127.0.0.1:3000/data_network").then(function (graph) {});
@@ -118,7 +120,6 @@ Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 50), cost: 2
 Milestone.find_by(name: 20).add_destination(Milestone.find_by(name: 50), cost: 3)
 
 Milestone.find_by(name: 10).sum_tree_cost
-
 # => 16
 ```
 
@@ -129,16 +130,16 @@ Add this line to your application's Gemfile:
 gem "acts_as_graph_diagram"
 ```
 
-And then execute:
+Or install it yourself as:
+```bash
+$ gem install acts_as_graph_diagram
+```
+
+Then executes:
 ```bash
 $ bundle
 $ bin/rails generate acts_as_graph_diagram
 $ bin/rails db:migrate
-```
-
-Or install it yourself as:
-```bash
-$ gem install acts_as_graph_diagram
 ```
 
 ## Development
@@ -159,10 +160,10 @@ Bug reports and pull requests are welcome on Github at https://github.com/routef
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Changelog
-available [here](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CHANGELOG.md).
+Available [here](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CHANGELOG.md).
 
 ## Code of Conduct
-Everyone interacting in the ActsAsTreeDiagram project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CODE_OF_CONDUCT.md).
 
 ## You may enjoy owning other libraries and my company.
 
