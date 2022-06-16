@@ -166,7 +166,8 @@ Everyone interacting in the ActsAsTreeDiagram project's codebases, issue tracker
 
 ## You may enjoy owning other libraries and my company.
 
-* [acts_as_graph_diagram: ActsAsTreeDiagram extends ActsAsTree to add simple function for draw tree diagram with html.](https://github.com/routeflags/acts_as_graph_diagram)
+* [acts_as_tree_diagram: ActsAsTreeDiagram extends ActsAsTree to add simple function for draw tree diagram with html.](https://github.com/routeflags/acts_as_tree_diagram)
+* [earned_value_calculator: Calculates the earned value of a project to indicate a diagnosis result.](https://github.com/routeflags/earned_value_calculator)
 * [timeline_rails_helper: The TimelineRailsHelper provides a timeline_molecules_tag helper to draw a vertical time line usable with vanilla CSS.](https://github.com/routeflags/timeline_rails_helper)
 * [株式会社旗指物](https://blog.routeflags.com/)
 
