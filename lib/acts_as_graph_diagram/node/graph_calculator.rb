@@ -1,56 +1,80 @@
 # frozen_string_literal: true
 
 module ActsAsGraphDiagram # :nodoc:
-  class NodeList < Array
-    def read_tree(functional, meta, value, operator)
-      return value if !defined?(empty?) || empty?
+  ##
+  # This module represents a array of node.
+  class Nodes < Array
+    # @param [Proc] functional
+    # @param [Proc] meta
+    # @param [Array] values
+    # @param [Symbol] operator
+    # @return Proc
+    def read_tree(functional, meta, values, operator)
+      return values if !defined?(empty?) || empty?
 
-      meta[first.destination.read_tree(functional, meta, value, operator),
-           ActsAsGraphDiagram::NodeList.new(tail)
-                                       .read_tree(functional, meta, value, operator)]
+      meta[first.destination.read_tree(functional, meta, values, operator),
+           ActsAsGraphDiagram::Nodes.new(tail)
+                                    .read_tree(functional, meta, values, operator)]
     end
 
-    def linear(functional, value)
+    # @param [Proc] functional
+    # @param [Nodes] values
+    # @return Proc
+    def linear(functional, values)
       return self if empty? || !first.attributes.include?(:destination)
 
       functional[first.destination,
-                 ActsAsGraphDiagram::NodeList.new(tail)
-                                             .linear(functional, value)]
+                 ActsAsGraphDiagram::Nodes.new(tail)
+                                          .linear(functional, values)]
     end
 
+    # @return Array
     def tail
       drop 1
     end
 
+    # @return Proc
     def confluence
+      # @param [Proc] functional
+      # @param [Nodes] values
       lambda do |x, list = self|
-        ActsAsGraphDiagram::NodeList.new([x] + list)
+        ActsAsGraphDiagram::Nodes.new([x] + list)
       end
     end
 
+    # @return Proc
     def append
+      # @param [Proc] functional
+      # @param [Nodes] values
       lambda do |nodes = self, list|
         nodes.linear confluence,
-                     ActsAsGraphDiagram::NodeList.new(list)
+                     ActsAsGraphDiagram::Nodes.new(list)
       end
     end
   end
 
   module Node # :nodoc:
+    ##
+    # This module represents a calculation of graph.
     module GraphCalculator
       extend ActiveSupport::Concern
 
       included do
+        # @param [Proc] functional
+        # @param [Proc] meta
+        # @param [Any] value
+        # @param [Symbol] operator
+        # @return Proc
         def read_tree(functional, meta, value, operator = :self)
-          if operator == :self
-            functional[self,
-                       ActsAsGraphDiagram::NodeList.new(departures.to_a)
-                                                   .read_tree(functional, meta, value, operator)]
-          else
-            functional[public_send(operator),
-                       ActsAsGraphDiagram::NodeList.new(departures.to_a)
-                                                   .read_tree(functional, meta, value, operator)]
-          end
+          argument = if operator == :self
+                  self
+                else
+                  public_send(operator)
+                end
+          functional[argument,
+                     ActsAsGraphDiagram::Nodes
+                       .new(aheads.where.not(destination_id: id).to_a)
+                       .read_tree(functional, meta, value, operator)]
         end
 
         # @return Integer
@@ -58,33 +82,45 @@ module ActsAsGraphDiagram # :nodoc:
           read_tree addition, addition, 0, :sum_cost
         end
 
+        # @return Proc
         def addition
+          # @param [Any] x
+          # @param [Any] y
           ->(x, y) { x + y }
         end
 
         def sum_cost
-          departures.sum(:cost)
+          aheads.sum(:cost)
         end
 
+        # @param [Proc] functional
+        # @param [Proc] meta
+        # @return Proc
         def linear(functional, meta)
+          raise NotImplementedError
           ->(x, y) { functional[meta[x], y] }
         end
 
+        # @return Proc
         def append
-          lambda do |node = self, list|
-            node.linear confluence,
-                        ActsAsGraphDiagram::NodeList.new(list)
+          # @param [Nodes] nodes
+          # @param [Array] values
+          lambda do |nodes = self, values|
+            nodes.linear confluence, ActsAsGraphDiagram::Nodes.new(values)
           end
         end
 
+        # @return Proc
         def confluence
-          lambda do |x, nodes = self|
-            ActsAsGraphDiagram::NodeList.new([x] + nodes)
+          # @param [Node] node
+          # @param [Nodes] nodes
+          lambda do |node, nodes = self|
+            ActsAsGraphDiagram::Nodes.new([node] + nodes)
           end
         end
 
         # @return [Node]
-        def assemble_nodes
+        def assemble_tree_nodes
           read_tree confluence, append, []
         end
       end

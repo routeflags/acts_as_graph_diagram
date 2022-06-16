@@ -10,12 +10,12 @@ module ActsAsGraphDiagram # :nodoc:
 
     module ClassMethods # :nodoc:
       def acts_as_node
-        has_many :destinations, as: :destination,
-                                class_name: 'Edge',
-                                dependent: :destroy
-        has_many :departures, as: :departure,
-                              class_name: 'Edge',
-                              dependent: :destroy
+        has_many :behinds, as: :destination,
+                           class_name: 'Edge',
+                           dependent: :destroy
+        has_many :aheads, as: :departure,
+                          class_name: 'Edge',
+                          dependent: :destroy
         include ActsAsGraphDiagram::Node::InstanceMethods
         include ActsAsGraphDiagram::Node::GraphCalculator
       end
@@ -30,9 +30,9 @@ module ActsAsGraphDiagram # :nodoc:
       # @param [Integer] cost
       # @return [Edge]
       def add_destination(node, comment: '', cost: 0)
-        departures.select_destinations(node)
-                  .where(comment: comment, cost: cost)
-                  .first_or_create!
+        aheads.select_destinations(node)
+              .where(comment: comment, cost: cost)
+              .first_or_create!
       end
 
       # Creates a new departure record for this instance to connect the passed object.
@@ -41,9 +41,9 @@ module ActsAsGraphDiagram # :nodoc:
       # @param [Integer] cost
       # @return [Edge]
       def add_departure(node, comment: '', cost: 0)
-        destinations.select_departures(node)
-                    .where(comment: comment, cost: cost)
-                    .first_or_create!
+        behinds.select_departures(node)
+               .where(comment: comment, cost: cost)
+               .first_or_create!
       end
 
       # Creates a new undirected connection record for this instance to connect the passed object.
@@ -65,7 +65,7 @@ module ActsAsGraphDiagram # :nodoc:
       # @param [Node] node
       # @return [Edge]
       def get_destination(node)
-        departures.select_destinations(node).first
+        aheads.select_destinations(node).first
       end
 
       # Deletes the destination record if it exists.
@@ -79,7 +79,7 @@ module ActsAsGraphDiagram # :nodoc:
       # @param [Node] node
       # @return [Edge]
       def get_departure(node)
-        destinations.select_departures(node).first
+        behinds.select_departures(node).first
       end
 
       # Deletes the destination record if it exists.
@@ -113,7 +113,7 @@ module ActsAsGraphDiagram # :nodoc:
       # Returns the number of objects this instance is following.
       # @return [Integer]
       def connecting_count
-        Edge.select_destinations(self).count + Edge.select_departures(self).count
+        Edge.select_connections(self).count
       end
     end
   end
