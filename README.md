@@ -159,10 +159,10 @@ Bug reports and pull requests are welcome on Github at https://github.com/routef
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Changelog
-available [here](https://github.com/routeflags/acts_as_graph_diagram/main/CHANGELOG.md).
+available [here](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CHANGELOG.md).
 
 ## Code of Conduct
-Everyone interacting in the ActsAsTreeDiagram project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/routeflags/acts_as_graph_diagram/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the ActsAsTreeDiagram project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CODE_OF_CONDUCT.md).
 
 ## You may enjoy owning other libraries and my company.
 
