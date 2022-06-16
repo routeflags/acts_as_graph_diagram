@@ -97,6 +97,31 @@ end
 d3.json("http://127.0.0.1:3000/data_network").then(function (graph) {});
 ```
 
+### Calculates the Program Evaluation and Review Technique (PERT)
+
+![Pert_chart_colored](https://user-images.githubusercontent.com/25024587/174105277-213a955a-b783-43ae-be98-1174d9256273.gif)
+
+> [PERT Chart. Drawn in Adobe Illustrator - inspired by a chart at netmba.com. Created by Jeremy Kemp. 2005/01/11 From Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique)
+
+```ruby
+Milestone.create(name: 10)
+Milestone.create(name: 20)
+Milestone.create(name: 30)
+Milestone.create(name: 40)
+Milestone.create(name: 50)
+
+Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 20), cost: 3)
+Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 30), cost: 4)
+Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 40), cost: 1)
+Milestone.find_by(name: 40).add_destination(Milestone.find_by(name: 50), cost: 3)
+Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 50), cost: 2)
+Milestone.find_by(name: 20).add_destination(Milestone.find_by(name: 50), cost: 3)
+
+Milestone.find_by(name: 10).sum_tree_cost
+
+# => 16
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 
