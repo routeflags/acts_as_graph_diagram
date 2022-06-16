@@ -97,7 +97,7 @@ end
 d3.json("http://127.0.0.1:3000/data_network").then(function (graph) {});
 ```
 
-### Calculates the Program Evaluation and Review Technique (PERT)
+### Calculates the network chart
 
 ![Pert_chart_colored](https://user-images.githubusercontent.com/25024587/174105277-213a955a-b783-43ae-be98-1174d9256273.gif)
 
