@@ -6,7 +6,7 @@ Acts As Graph Diagram extends Active Record to add simple function for draw the 
 [![Gem Version](https://badge.fury.io/rb/acts_as_graph_diagram.svg)](https://badge.fury.io/rb/acts_as_graph_diagram)
 ![](https://ruby-gem-downloads-badge.herokuapp.com/acts_as_graph_diagram)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop-hq/rubocop)
-[![CircleCI](https://circleci.com/gh/smapira/acts_as_graph_diagram.svg?style=svg)](https://circleci.com/gh/smapira/acts_as_graph_diagram)
+[![CircleCI](https://circleci.com/gh/routeflags/acts_as_graph_diagram.svg?style=svg)](https://circleci.com/gh/routeflags/acts_as_graph_diagram)
 
 ## See It Work
 
@@ -128,21 +128,21 @@ bin/test
 ```
 
 ## Contributing
-Bug reports and pull requests are welcome on Github at https://github.com/smapira/acts_as_graph_diagram. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
+Bug reports and pull requests are welcome on Github at https://github.com/routeflags/acts_as_graph_diagram. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Changelog
-available [here](https://github.com/smapira/acts_as_graph_diagram/main/CHANGELOG.md).
+available [here](https://github.com/routeflags/acts_as_graph_diagram/main/CHANGELOG.md).
 
 ## Code of Conduct
-Everyone interacting in the ActsAsTreeDiagram project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/smapira/acts_as_graph_diagram/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the ActsAsTreeDiagram project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/routeflags/acts_as_graph_diagram/main/CODE_OF_CONDUCT.md).
 
 ## You may enjoy owning other libraries and my company.
 
-* [acts_as_graph_diagram: ActsAsTreeDiagram extends ActsAsTree to add simple function for draw tree diagram with html.](https://github.com/smapira/acts_as_graph_diagram)
-* [timeline_rails_helper: The TimelineRailsHelper provides a timeline_molecules_tag helper to draw a vertical time line usable with vanilla CSS.](https://github.com/smapira/timeline_rails_helper)
+* [acts_as_graph_diagram: ActsAsTreeDiagram extends ActsAsTree to add simple function for draw tree diagram with html.](https://github.com/routeflags/acts_as_graph_diagram)
+* [timeline_rails_helper: The TimelineRailsHelper provides a timeline_molecules_tag helper to draw a vertical time line usable with vanilla CSS.](https://github.com/routeflags/timeline_rails_helper)
 * [株式会社旗指物](https://blog.routeflags.com/)
 
 ## Аcknowledgments
