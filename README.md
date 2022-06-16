@@ -20,7 +20,7 @@ class God < ApplicationRecord
   acts_as_graph_diagram
 end
 
-God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra')
+God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', cost: 1)
 # => #<Edge:0x000000010b0d4560
 #  id: 1,
 #  comment: "",
@@ -36,7 +36,7 @@ God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra')
 God.find_by(name: 'Rheā').connecting_count
 # => 1
 
-God.find_by(name: 'Rheā').departures
+God.find_by(name: 'Rheā').destinations
 # => [#<Edge:0x000000010b5642b0
 #   id: 1,
 #   comment: "",
@@ -49,14 +49,14 @@ God.find_by(name: 'Rheā').departures
 #   created_at: Sun, 12 Jun 2022 11:11:06.995007000 UTC +00:00,
 #   updated_at: Sun, 12 Jun 2022 11:11:06.995007000 UTC +00:00>]
 
-God.find_by(name: 'Rheā').departures.first.destination
+God.find_by(name: 'Rheā').aheads.first.destination
 # => #<God:0x000000010b5efb58 id: 2, name: "Hēra", created_at: Sun, 12 Jun 2022 11:11:06.984341000 UTC +00:00, updated_at: Sun, 12 Jun 2022 11:11:06.984341000 UTC +00:00>
 ```
 
 ### Methods
 
-* destinations()
-* departures()
+* aheads
+* behinds
 * add_destination(node, comment: '', cost: 0)
 * add_departure(node, comment: '', cost: 0)
 * get_destination(node)
@@ -66,10 +66,9 @@ God.find_by(name: 'Rheā').departures.first.destination
 * connecting?(node)
 * connecting_count()
 * add_connection(node, directed: false, comment: '', cost: 0)
-* add_connection(node, directed: false, comment: '', cost: 0)
-* sum_cost
-* sum_tree_cost
-* assemble_nodes
+* sum_cost()
+* sum_tree_cost()
+* assemble_tree_nodes()
 
 ### Draws the graph diagram with D3.js
 
@@ -118,6 +117,11 @@ $ gem install acts_as_graph_diagram
 ```
 
 ## Development
+### Rails console
+```bash
+test/dummy/bin/rails console
+```
+
 ### Test
 ```bash
 bin/test

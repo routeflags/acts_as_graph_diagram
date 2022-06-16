@@ -8,8 +8,8 @@ class ActsAsGraphDiagramTest < ActiveSupport::TestCase
   end
 
   test 'be defined' do
-    assert God.first.respond_to?(:destinations)
-    assert God.first.respond_to?(:departures)
+    assert God.first.respond_to?(:aheads)
+    assert God.first.respond_to?(:behinds)
     assert God.first.respond_to?(:add_destination)
     assert God.first.respond_to?(:add_departure)
     assert God.first.respond_to?(:get_destination)
@@ -21,7 +21,7 @@ class ActsAsGraphDiagramTest < ActiveSupport::TestCase
     assert God.first.respond_to?(:add_connection)
     assert God.first.respond_to?(:sum_cost)
     assert God.first.respond_to?(:sum_tree_cost)
-    assert God.first.respond_to?(:assemble_nodes)
+    assert God.first.respond_to?(:assemble_tree_nodes)
   end
 
   test 'calculate sum_cost' do
@@ -35,9 +35,10 @@ class ActsAsGraphDiagramTest < ActiveSupport::TestCase
     assert_equal God.find(4).sum_tree_cost, 7
   end
 
-  test 'call assemble_nodes' do
+  test 'call assemble_tree_nodes' do
     God.find(4).add_destination(God.find(6), cost: 4)
     God.find(6).add_destination(God.find(7), cost: 3)
-    assert_equal God.find(4).assemble_nodes.size, 3
+    God.find(6).add_destination(God.find(7), cost: 3)
+    assert_equal God.find(4).assemble_tree_nodes.size, 3
   end
 end

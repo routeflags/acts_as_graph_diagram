@@ -3,7 +3,7 @@
 require 'rails/generators'
 require 'rails/generators/migration'
 
-class ActsAsGraphDiagramGenerator < Rails::Generators::Base
+class ActsAsGraphDiagramGenerator < Rails::Generators::Base # :nodoc:
   include Rails::Generators::Migration
 
   def self.source_root

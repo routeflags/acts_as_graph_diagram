@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ActsAsGraphDiagram # :nodoc:
+  ##
+  # This module represents a act of edge.
   module EdgeScopes
     extend ActiveSupport::Concern
 
