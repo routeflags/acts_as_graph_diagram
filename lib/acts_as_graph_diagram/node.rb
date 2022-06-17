@@ -27,22 +27,22 @@ module ActsAsGraphDiagram # :nodoc:
       # Creates a new destination record for this instance to connect the passed object.
       # @param [Node] node
       # @param [String] comment
-      # @param [Integer] cost
+      # @param [Integer] figure
       # @return [Edge]
-      def add_destination(node, comment: '', cost: 0)
+      def add_destination(node, comment: '', figure: 0)
         aheads.select_destinations(node)
-              .where(comment: comment, cost: cost)
+              .where(comment: comment, figure: figure)
               .first_or_create!
       end
 
       # Creates a new departure record for this instance to connect the passed object.
       # @param [Node] node
       # @param [String] comment
-      # @param [Integer] cost
+      # @param [Integer] figure
       # @return [Edge]
-      def add_departure(node, comment: '', cost: 0)
+      def add_departure(node, comment: '', figure: 0)
         behinds.select_departures(node)
-               .where(comment: comment, cost: cost)
+               .where(comment: comment, figure: figure)
                .first_or_create!
       end
 
@@ -50,14 +50,14 @@ module ActsAsGraphDiagram # :nodoc:
       # @param [Node] node
       # @param [Boolean] directed
       # @param [String] comment
-      # @param [Integer] cost
+      # @param [Integer] figure
       # @return [Edge]
-      def add_connection(node, directed: false, comment: '', cost: 0)
+      def add_connection(node, directed: false, comment: '', figure: 0)
         Edge.where(destination: node,
                    directed: directed,
                    departure: self,
                    comment: comment,
-                   cost: cost).first_or_create!
+                   figure: figure).first_or_create!
       end
       # rubocop:enable Style/HashSyntax
 

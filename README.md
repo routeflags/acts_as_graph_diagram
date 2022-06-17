@@ -20,11 +20,11 @@ class God < ApplicationRecord
   acts_as_graph_diagram
 end
 
-God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', cost: 1)
+God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', figure: 1)
 # => #<Edge:0x000000010b0d4560
 #  id: 1,
 #  comment: "",
-#  cost: 0,
+#  figure: 0,
 #  directed: true,
 #  destination_type: "God",
 #  destination_id: 2,
@@ -40,7 +40,7 @@ God.find_by(name: 'Rheā').aheads
 # => [#<Edge:0x000000010b5642b0
 #   id: 1,
 #   comment: "",
-#   cost: 0,
+#   figure: 0,
 #   directed: true,
 #   destination_type: "God",
 #   destination_id: 2,
@@ -57,17 +57,16 @@ God.find_by(name: 'Rheā').aheads.first.destination
 
 * aheads
 * behinds
-* add_destination(node, comment: '', cost: 0)
-* add_departure(node, comment: '', cost: 0)
+* add_destination(node, comment: '', figure: 0)
+* add_departure(node, comment: '', figure: 0)
 * get_destination(node)
 * get_departure(node)
 * remove_destination(node)
 * remove_departure(node)
 * connecting?(node)
 * connecting_count()
-* add_connection(node, directed: false, comment: '', cost: 0)
-* sum_cost()
-* sum_tree_cost()
+* add_connection(node, directed: false, comment: '', figure: 0)
+* sum_tree(column)
 * assemble_tree_nodes()
 
 ### Draws the graph diagram with D3.js
@@ -99,7 +98,7 @@ end
 d3.json("http://127.0.0.1:3000/data_network").then(function (graph) {});
 ```
 
-### Calculates the network chart
+### Calculates the total using the breadth first search.
 
 ![Pert_chart_colored](https://user-images.githubusercontent.com/25024587/174105277-213a955a-b783-43ae-be98-1174d9256273.gif)
 
@@ -112,14 +111,14 @@ Milestone.create(name: 30)
 Milestone.create(name: 40)
 Milestone.create(name: 50)
 
-Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 20), cost: 3)
-Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 30), cost: 4)
-Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 40), cost: 1)
-Milestone.find_by(name: 40).add_destination(Milestone.find_by(name: 50), cost: 3)
-Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 50), cost: 2)
-Milestone.find_by(name: 20).add_destination(Milestone.find_by(name: 50), cost: 3)
+Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 20), figure: 3)
+Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 30), figure: 4)
+Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 40), figure: 1)
+Milestone.find_by(name: 40).add_destination(Milestone.find_by(name: 50), figure: 3)
+Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 50), figure: 2)
+Milestone.find_by(name: 20).add_destination(Milestone.find_by(name: 50), figure: 3)
 
-Milestone.find_by(name: 10).sum_tree_cost
+Milestone.find_by(name: 10).sum_tree(:figure)
 # => 16
 ```
 
@@ -129,6 +128,9 @@ Add this line to your application's Gemfile:
 ```ruby
 gem "acts_as_graph_diagram"
 ```
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 ```bash
@@ -137,7 +139,6 @@ $ gem install acts_as_graph_diagram
 
 Then executes:
 ```bash
-$ bundle
 $ bin/rails generate acts_as_graph_diagram
 $ bin/rails db:migrate
 ```

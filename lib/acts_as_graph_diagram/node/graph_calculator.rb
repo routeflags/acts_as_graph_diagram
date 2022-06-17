@@ -6,15 +6,17 @@ module ActsAsGraphDiagram # :nodoc:
   class Nodes < Array
     # @param [Proc] functional
     # @param [Proc] meta
-    # @param [Array] values
+    # @param [Any] value
     # @param [Symbol] operator
-    # @return Proc
-    def read_tree(functional, meta, values, operator)
-      return values if !defined?(empty?) || empty?
+    # @return Any
+    def recurse_apply(functional, meta, value, operator)
+      return value if !defined?(empty?) || empty?
 
-      meta[first.destination.read_tree(functional, meta, values, operator),
-           ActsAsGraphDiagram::Nodes.new(tail)
-                                    .read_tree(functional, meta, values, operator)]
+      meta[
+        first.destination.recurse_apply(functional, meta, value, operator),
+        ActsAsGraphDiagram::Nodes.new(tail)
+                                 .recurse_apply(functional, meta, value, operator)
+      ]
     end
 
     # @param [Proc] functional
@@ -64,33 +66,31 @@ module ActsAsGraphDiagram # :nodoc:
         # @param [Proc] meta
         # @param [Any] value
         # @param [Symbol] operator
-        # @return Proc
-        def read_tree(functional, meta, value, operator = :self)
+        # @return Any
+        def recurse_apply(functional, meta, value, operator = :self)
           argument = if operator == :self
-                  self
-                else
-                  public_send(operator)
-                end
+                       self
+                     else
+                       public_send(operator[0]).public_send(operator[1], operator[2])
+                     end
+
           functional[argument,
                      ActsAsGraphDiagram::Nodes
                        .new(aheads.where.not(destination_id: id).to_a)
-                       .read_tree(functional, meta, value, operator)]
+                       .recurse_apply(functional, meta, value, operator)]
         end
 
         # @return Integer
-        def sum_tree_cost
-          read_tree addition, addition, 0, :sum_cost
+        def sum_tree(column = :figure)
+          recurse_apply addition, addition, 0, %i[aheads sum] + [column]
         end
 
         # @return Proc
         def addition
-          # @param [Any] x
-          # @param [Any] y
+          # @param [Integer] x
+          # @param [Integer] y
+          # @return Integer
           ->(x, y) { x + y }
-        end
-
-        def sum_cost
-          aheads.sum(:cost)
         end
 
         # @param [Proc] functional
@@ -121,7 +121,7 @@ module ActsAsGraphDiagram # :nodoc:
 
         # @return [Node]
         def assemble_tree_nodes
-          read_tree confluence, append, []
+          recurse_apply confluence, append, []
         end
       end
     end
