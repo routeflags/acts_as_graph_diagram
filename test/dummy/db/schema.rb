@@ -12,10 +12,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_612_090_334) do
+ActiveRecord::Schema[7.0].define(version: 20_220_617_084_205) do
   create_table 'edges', force: :cascade do |t|
     t.string 'comment', default: ''
-    t.integer 'cost', default: 0
+    t.integer 'figure', default: 0
+    t.integer 'lower_figure', default: 0
+    t.integer 'higher_figure', default: 0
     t.boolean 'directed', default: true
     t.string 'destination_type'
     t.integer 'destination_id'

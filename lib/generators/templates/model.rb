@@ -6,7 +6,9 @@
 #
 #  id               :integer          not null, primary key
 #  comment          :string           default("")
-#  cost             :integer          default(0)
+#  figure           :integer          default(0)
+#  lower_figure     :integer          default(0)
+#  higher_figure    :integer          default(0)
 #  directed         :boolean          default(TRUE)
 #  destination_type :string
 #  destination_id   :integer

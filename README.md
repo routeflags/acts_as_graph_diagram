@@ -20,11 +20,11 @@ class God < ApplicationRecord
   acts_as_graph_diagram
 end
 
-God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', cost: 1)
+God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', figure: 1)
 # => #<Edge:0x000000010b0d4560
 #  id: 1,
 #  comment: "",
-#  cost: 0,
+#  figure: 0,
 #  directed: true,
 #  destination_type: "God",
 #  destination_id: 2,
@@ -40,7 +40,7 @@ God.find_by(name: 'Rheā').destinations
 # => [#<Edge:0x000000010b5642b0
 #   id: 1,
 #   comment: "",
-#   cost: 0,
+#   figure: 0,
 #   directed: true,
 #   destination_type: "God",
 #   destination_id: 2,
@@ -57,17 +57,16 @@ God.find_by(name: 'Rheā').aheads.first.destination
 
 * aheads
 * behinds
-* add_destination(node, comment: '', cost: 0)
-* add_departure(node, comment: '', cost: 0)
+* add_destination(node, comment: '', figure: 0)
+* add_departure(node, comment: '', figure: 0)
 * get_destination(node)
 * get_departure(node)
 * remove_destination(node)
 * remove_departure(node)
 * connecting?(node)
 * connecting_count()
-* add_connection(node, directed: false, comment: '', cost: 0)
-* sum_cost()
-* sum_tree_cost()
+* add_connection(node, directed: false, comment: '', figure: 0)
+* sum_tree(column)
 * assemble_tree_nodes()
 
 ### Draws the graph diagram with D3.js
@@ -103,10 +102,12 @@ Add this line to your application's Gemfile:
 ```ruby
 gem "acts_as_graph_diagram"
 ```
+```bash
+$ bundle
+```
 
 And then execute:
 ```bash
-$ bundle
 $ bin/rails generate acts_as_graph_diagram
 $ bin/rails db:migrate
 ```

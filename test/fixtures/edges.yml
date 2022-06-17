@@ -2,7 +2,7 @@
 edge_1:
   id: 1
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 2
@@ -13,7 +13,7 @@ edge_1:
 edge_2:
   id: 2
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 6
@@ -24,7 +24,7 @@ edge_2:
 edge_3:
   id: 3
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 9
@@ -35,7 +35,7 @@ edge_3:
 edge_4:
   id: 4
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 1
@@ -46,7 +46,7 @@ edge_4:
 edge_5:
   id: 5
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 12
@@ -57,7 +57,7 @@ edge_5:
 edge_6:
   id: 6
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 14
@@ -68,7 +68,7 @@ edge_6:
 edge_7:
   id: 7
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 2
@@ -79,7 +79,7 @@ edge_7:
 edge_8:
   id: 8
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 11
@@ -90,7 +90,7 @@ edge_8:
 edge_9:
   id: 9
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 8
@@ -101,7 +101,7 @@ edge_9:
 edge_10:
   id: 10
   comment: ''
-  cost: 0
+  figure: 0
   directed: 1
   destination_type: God
   destination_id: 15
