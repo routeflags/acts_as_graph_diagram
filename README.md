@@ -36,7 +36,7 @@ God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', figure: 1)
 God.find_by(name: 'Rheā').connecting_count
 # => 1
 
-God.find_by(name: 'Rheā').destinations
+God.find_by(name: 'Rheā').aheads
 # => [#<Edge:0x000000010b5642b0
 #   id: 1,
 #   comment: "",
@@ -71,7 +71,9 @@ God.find_by(name: 'Rheā').aheads.first.destination
 
 ### Draws the graph diagram with D3.js
 
-1. Append the lines to your controller file like below:
+Distributes to represent a graph JSON via API.
+
+1. Implement a renderer in your controller file as below:
 ```ruby
 class GodsController < ApplicationController
   def data_network
@@ -90,7 +92,7 @@ Rails.application.routes.draw do
 end
 ```
 
-3. Then append the line to your javascript file like below:
+3. Then execute a D3 query in your javascript file as below:
 ```javascript
 // v7.4.4
 d3.json("http://127.0.0.1:3000/data_network").then(function (graph) {});
@@ -130,15 +132,15 @@ gem "acts_as_graph_diagram"
 $ bundle
 ```
 
-And then execute:
-```bash
-$ bin/rails generate acts_as_graph_diagram
-$ bin/rails db:migrate
-```
-
 Or install it yourself as:
 ```bash
 $ gem install acts_as_graph_diagram
+```
+
+Then executes:
+```bash
+$ bin/rails generate acts_as_graph_diagram
+$ bin/rails db:migrate
 ```
 
 ## Development
@@ -159,14 +161,15 @@ Bug reports and pull requests are welcome on Github at https://github.com/routef
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Changelog
-available [here](https://github.com/routeflags/acts_as_graph_diagram/main/CHANGELOG.md).
+Available [here](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CHANGELOG.md).
 
 ## Code of Conduct
-Everyone interacting in the ActsAsTreeDiagram project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/routeflags/acts_as_graph_diagram/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/routeflags/acts_as_graph_diagram/blob/main/CODE_OF_CONDUCT.md).
 
 ## You may enjoy owning other libraries and my company.
 
-* [acts_as_graph_diagram: ActsAsTreeDiagram extends ActsAsTree to add simple function for draw tree diagram with html.](https://github.com/routeflags/acts_as_graph_diagram)
+* [acts_as_tree_diagram: ActsAsTreeDiagram extends ActsAsTree to add simple function for draw tree diagram with html.](https://github.com/routeflags/acts_as_tree_diagram)
+* [earned_value_calculator: Calculates the earned value of a project to indicate a diagnosis result.](https://github.com/routeflags/earned_value_calculator)
 * [timeline_rails_helper: The TimelineRailsHelper provides a timeline_molecules_tag helper to draw a vertical time line usable with vanilla CSS.](https://github.com/routeflags/timeline_rails_helper)
 * [株式会社旗指物](https://blog.routeflags.com/)
 
