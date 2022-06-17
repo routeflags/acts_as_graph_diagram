@@ -22,27 +22,3 @@ jobs:
             gem install bundler
             bundle install
             bin/test
-  publish:
-    docker:
-      - image: cimg/ruby:3.1.0
-    steps:
-      - add_ssh_keys:
-          finerprints:
-            - "76:81:9b:18:85:2a:bd:ae:ec:94:f8:96:fe:de:2d:8e"
-      - checkout
-      - run:
-          name: Setup Rubygems
-          command: bash .circleci/setup_rubygems.sh
-      - run:
-          name: Update vresion.rb and publish on RubyGems
-          command: bash .circleci/deploy_to_rubygems.sh
-workflows:
-  version: 2
-  deploy:
-    jobs:
-      - publish:
-          filters:
-            tags:
-              only: /^v[0-9]{1,}(\.[0-9]{1,}){2}$/
-            branches:
-              ignore: /.*/
