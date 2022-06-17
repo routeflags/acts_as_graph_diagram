@@ -96,7 +96,7 @@ end
 d3.json("http://127.0.0.1:3000/data_network").then(function (graph) {});
 ```
 
-### Calculates the network chart
+### Calculates the total using the breadth first search.
 
 ![Pert_chart_colored](https://user-images.githubusercontent.com/25024587/174105277-213a955a-b783-43ae-be98-1174d9256273.gif)
 
@@ -109,15 +109,14 @@ Milestone.create(name: 30)
 Milestone.create(name: 40)
 Milestone.create(name: 50)
 
-Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 20), cost: 3)
-Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 30), cost: 4)
-Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 40), cost: 1)
-Milestone.find_by(name: 40).add_destination(Milestone.find_by(name: 50), cost: 3)
-Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 50), cost: 2)
-Milestone.find_by(name: 20).add_destination(Milestone.find_by(name: 50), cost: 3)
+Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 20), figure: 3)
+Milestone.find_by(name: 10).add_destination(Milestone.find_by(name: 30), figure: 4)
+Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 40), figure: 1)
+Milestone.find_by(name: 40).add_destination(Milestone.find_by(name: 50), figure: 3)
+Milestone.find_by(name: 30).add_destination(Milestone.find_by(name: 50), figure: 2)
+Milestone.find_by(name: 20).add_destination(Milestone.find_by(name: 50), figure: 3)
 
-Milestone.find_by(name: 10).sum_tree_cost
-
+Milestone.find_by(name: 10).sum_tree(:figure)
 # => 16
 ```
 
