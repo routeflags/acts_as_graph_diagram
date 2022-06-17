@@ -36,3 +36,13 @@ jobs:
       - run:
           name: Update vresion.rb and publish on RubyGems
           command: bash .circleci/deploy_to_rubygems.sh
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - publish:
+          filters:
+            tags:
+              only: /^v[0-9]{1,}(\.[0-9]{1,}){2}$/
+            branches:
+              ignore: /.*/
