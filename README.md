@@ -100,6 +100,14 @@ d3.json("http://127.0.0.1:3000/data_network").then(function (graph) {});
 
 ### Calculates the total using the breadth first search.
 
+Worst-case performance
+
+<img src="https://latex.codecogs.com/svg.image?O\left&space;(\left|&space;V&space;\right|&plus;\left|&space;E&space;\right|&space;&space;\right&space;)=O\left&space;(&space;b^d&space;\right&space;)" />
+
+Worst-case space complexity
+
+<img src="https://latex.codecogs.com/svg.image?O(|V|)=O\left&space;(&space;b^d&space;\right&space;)" />
+
 ![Pert_chart_colored](https://user-images.githubusercontent.com/25024587/174105277-213a955a-b783-43ae-be98-1174d9256273.gif)
 
 > [PERT Chart. Drawn in Adobe Illustrator - inspired by a chart at netmba.com. Created by Jeremy Kemp. 2005/01/11 From Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique)
