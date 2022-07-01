@@ -19,7 +19,10 @@ Append the line to your model file like below:
 class God < ApplicationRecord
   acts_as_graph_diagram
 end
+```
+Call a method in the model to handle the graph network.
 
+```ruby
 God.find_by(name: 'Rheā').add_destination God.find_by(name: 'Hēra', figure: 1)
 # => #<Edge:0x000000010b0d4560
 #  id: 1,
