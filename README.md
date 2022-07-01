@@ -56,7 +56,7 @@ God.find_by(name: 'Rheā').aheads.first.destination
 # => #<God:0x000000010b5efb58 id: 2, name: "Hēra", created_at: Sun, 12 Jun 2022 11:11:06.984341000 UTC +00:00, updated_at: Sun, 12 Jun 2022 11:11:06.984341000 UTC +00:00>
 ```
 
-### Methods
+### Providing features:
 
 * aheads
 * behinds
